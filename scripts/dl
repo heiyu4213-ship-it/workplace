@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# 手机下载快捷命令：dl <链接> [更多 yt-dlp 参数]
+# 默认存到 手机存储/Download/DSH-Go/，自动合并成 mp4
+set -euo pipefail
+DIR="${DSH_DL_DIR:-/sdcard/Download/DSH-Go}"
+mkdir -p "$DIR"
+exec yt-dlp -P "$DIR" --merge-output-format mp4 \
+  -f "bv*+ba/b" --no-mtime --newline "$@"
